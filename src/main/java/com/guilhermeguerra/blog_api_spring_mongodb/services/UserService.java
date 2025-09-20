@@ -1,6 +1,7 @@
 package com.guilhermeguerra.blog_api_spring_mongodb.services;
 
 import com.guilhermeguerra.blog_api_spring_mongodb.domain.User;
+import com.guilhermeguerra.blog_api_spring_mongodb.dto.UserDto;
 import com.guilhermeguerra.blog_api_spring_mongodb.repository.UserRepository;
 import com.guilhermeguerra.blog_api_spring_mongodb.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +23,14 @@ public class UserService {
     public User findById(String id) {
         Optional<User> user = repository.findById(id);
         return user.orElseThrow(() -> new ObjectNotFoundException("Usuário não encontrado!"));
+    }
+
+    public User insert(User user) {
+        return repository.insert(user);
+    }
+
+
+    public User fromDto(UserDto objDto) {
+        return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
     }
 }
