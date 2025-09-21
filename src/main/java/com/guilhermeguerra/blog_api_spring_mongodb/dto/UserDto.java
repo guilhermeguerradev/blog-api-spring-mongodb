@@ -3,7 +3,12 @@ package com.guilhermeguerra.blog_api_spring_mongodb.dto;
 import com.guilhermeguerra.blog_api_spring_mongodb.domain.User;
 import org.springframework.beans.BeanUtils;
 
-public class UserDto {
+import java.io.Serializable;
+
+public class UserDto implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+
     private String id;
     private String name;
     private String email;
