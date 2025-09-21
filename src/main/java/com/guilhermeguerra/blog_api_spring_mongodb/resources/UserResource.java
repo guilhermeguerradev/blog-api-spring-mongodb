@@ -1,5 +1,6 @@
 package com.guilhermeguerra.blog_api_spring_mongodb.resources;
 
+import com.guilhermeguerra.blog_api_spring_mongodb.domain.Post;
 import com.guilhermeguerra.blog_api_spring_mongodb.domain.User;
 import com.guilhermeguerra.blog_api_spring_mongodb.dto.UserDto;
 import com.guilhermeguerra.blog_api_spring_mongodb.services.UserService;
@@ -56,5 +57,11 @@ public class UserResource {
         obj.setId(id);
         service.update(obj);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User obj = service.findById(id);
+        return ResponseEntity.ok().body(obj.getPosts());
     }
 }
